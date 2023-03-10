@@ -33,6 +33,7 @@ spec:
     email: sre@example.com
     picture: https://cdn-icons-png.flaticon.com/512/2037/2037737.png
   parent: eu-b2b
+  children: []
   
 ---
 apiVersion: backstage.io/v1alpha1
@@ -47,6 +48,7 @@ spec:
     email: m2c@example.com
     picture: https://cdn-icons-png.flaticon.com/512/2037/2037737.png
   parent: eu-b2b
+  children: []
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -61,6 +63,7 @@ spec:
     email: epc@example.com
     picture: https://cdn-icons-png.flaticon.com/512/2037/2037737.png
   parent: eu-b2b
+  children: []
 
 ---
 apiVersion: backstage.io/v1alpha1
