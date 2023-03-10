@@ -1,15 +1,24 @@
 apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: dbb
+  description: DBB
+spec:
+  owner: eu-b2b
+  
+---
+apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: eu-b2b
-  description: eu-b2b
+  description: EU B2B
 spec:
   type: business-unit
   profile:
     displayName: EU B2B
     email: eu-b2b@example.com
     picture: https://cdn-icons-png.flaticon.com/512/2037/2037737.png
-  children: [sre, m2c]
+  children: [sre, m2c, epc]
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -32,7 +41,7 @@ metadata:
   name: m2c
   description: Meter to Cash.
 spec:
-  type: product-team
+  type: product-area
   profile:
     displayName: M2C
     email: m2c@example.com
@@ -46,7 +55,7 @@ metadata:
   name: epc
   description: EPC.
 spec:
-  type: product-team
+  type: product-area
   profile:
     displayName: EPC
     email: epc@example.com
@@ -55,70 +64,32 @@ spec:
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Domain
-metadata:
-  name: infra
-  description: Infra
-spec:
-  owner: sre
-
----
-apiVersion: backstage.io/v1alpha1
-kind: Domain
-metadata:
-  name: meter-asset
-  description: Meter Asset data
-spec:
-  owner: m2c
-  
----
-apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: dbb-infra
-  description: Dbb Infra.
+  description: Infra
 spec:
   owner: sre
-  domain: infra
+  domain: dbb
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: m2c-etl
-  description: M2C ETL.
+  name: dbb-etl
+  description: ETLs.
 spec:
   owner: m2c
-  domain: infra
-
----
-apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: dbb-import-etl
-  description: ETL to import data into dbb.
-spec:
-  owner: artist-relations-team
-  domain: artists
-
----
-apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: dbb-export-etl
-  description: ETL to export data from dbb.
-spec:
-  owner: artist-relations-team
-  domain: artists
+  domain: dbb
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: consumption_es_g
-  description: consumption_es_g
+  name: consumption_es_g_v1
+  description: consumption_es_g_v1
 spec:
-  type: etl
+  type: service
   lifecycle: production
   owner: m2c
-  system: dbb-import-etl
+  system: dbb-etl
